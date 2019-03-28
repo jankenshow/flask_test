@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<form action="/upload" method="post" enctype="multipart/form-data">
+    <input type="file" name="image" accept="image/png, image/jpeg">
+    <button type="submit">submit</button>
+</form>
+
+{{ pagination.info }}
+{{ pagination.links }}
+
+<ul>
+{% if images %}
+  {% for i in range(images|length) %}
+<!--     <li><a href="{{url_for('send_js', path=images[i])}}">{{ images[i] }}</a></li> -->
+    <tbody>
+    <tr>
+        <td>
+            <div>
+                <p><a href="{{url_for('send_js', path=images[i])}}">{{ images[i] }}</a></p>
+                <img src="images/{{ images[i] }}" style="margin-top: 10px; margin-left: 50px; vertical-align: bottom; width: 300px; height: 300px;">
+            </div>
+        </td>
+    </tr>
+    </tbody>
+  {% endfor %}
+{% endif %}
+</ul>
+
+{{ pagination.info }}
+{{ pagination.links }}
+    
+{% endblock %}
