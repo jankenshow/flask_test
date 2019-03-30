@@ -30,8 +30,13 @@ def index():
     return render_template('index.html', images=page_ims, pagination=pagination)
 
 @app.route('/images/<path:path>')
-def send_js(path):
+def send_img(path):
     return send_from_directory(SAVE_DIR, path)
+
+@app.route('/css/<path:path>')
+def send_css(path):
+    css_dir = "./templates/css"
+    return send_from_directory(css_dir, path)
 
 # 参考: https://qiita.com/yuuuu3/items/6e4206fdc8c83747544b
 @app.route('/upload', methods=['POST'])
